@@ -10,8 +10,10 @@ import css from './App.module.css';
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
+  const total = good + neutral + bad;
+
   const countTotalFeedback = () => {
-    return good + neutral + bad;
+    return total;
   };
 
  const onLeaveFeedback = evt => {
@@ -21,7 +23,7 @@ import css from './App.module.css';
   };
 
   const countPositiveFeedbackPercentage = () => {
-    return Math.floor((good / (good + neutral + bad)) * 100 || 0);
+    return Math.floor((good / total) * 100 || 0);
   };
 
   return (
@@ -34,13 +36,13 @@ import css from './App.module.css';
       </Section>
       <Section title="Statistics">
 
-        {countTotalFeedback() === 0 ? (
+        {total === 0 ? (
           <Notification message="There is no feedback yet..." />
         ) : (
           <Statistics
             options={Object.keys({ good, neutral, bad })}
             statistic={{ good, neutral, bad }}
-            total={countTotalFeedback()}
+            total={total}
             positivePercentage={countPositiveFeedbackPercentage} 
           />
         )}
