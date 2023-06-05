@@ -36,7 +36,7 @@ import css from './App.module.css';
       </Section>
       <Section title="Statistics">
 
-        {total === 0 ? (
+        {countTotalFeedback() === 0 ? (
           <Notification message="There is no feedback yet..." />
         ) : (
           <Statistics
